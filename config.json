@@ -1,0 +1,7 @@
+{
+    "email": "your mail id",
+    "password": "your password",
+    "keywords": "search keywords for filtering the jobs",
+    "location": "your location",
+    "driver_path": "your driver_path"
+}
