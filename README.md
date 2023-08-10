@@ -11,7 +11,12 @@ Features:
 
 note - It only applies to "Easy Apply" jobs not every single one.
 
-Usage:(IMPORTANT)
+Prerequisites:
+1. Your resume should be saved in your linkedin account.
+2. You should have applied to some of the jobs manually i.e. it would help bot to save your preferences about basic questions asked for the job and would not throw error.
+3. Make sure you have python installed.
+
+How to Use:(IMPORTANT)
 1. Clone the repository and install the required "dependencies" and you will also need a "chrome-driver" to run this with your suitable browser. You can download it using the following link: https://googlechromelabs.github.io/chrome-for-testing/  (check your chrome browser version before in the about section).
 2. Fill in your LinkedIn login credentials and job search preferences in the config.json file.
 3. Run the main.py script to start the bot.
