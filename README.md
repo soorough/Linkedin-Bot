@@ -9,11 +9,14 @@ Features:
 - Automatic login to your LinkedIn profile
 - Customizable search with keywords and location
 
-note - It only applies to "Easy Apply" jobs not every single one.
+SOME IMPORTANT NOTES:
+
+- It only applies to "Easy Apply" jobs not every single one.
+- There might be bot checker so you have to manually do the "are you a human test"(you can change up the code at line no 42 and increase or decrease the time according to your needs).
 
 Prerequisites:
 1. Your resume should be saved in your linkedin account.
-2. You should have applied to some of the jobs manually i.e. it would help bot to save your preferences about basic questions asked for the job and would not throw error.
+2. You should have applied to some of the jobs manually i.e. it would help bot to save your preferences about basic questions asked for the job and would not throw EXCEPTIONS.
 3. Make sure you have python installed.
 
 How to Use:(IMPORTANT)
@@ -26,6 +29,10 @@ Please note:
 - Use this bot responsibly and follow LinkedIn's terms of service.
 - The bot is designed for educational and personal use only and should not be used for commercial purposes or spamming.
 - LinkedIn may change its website structure or policies, which could affect the bot's functionality. Use at your own risk.
+
+ISSUES:
+If you face any issues regarding compatibility issues of choromedriver refer to this thread:
+https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/1558
 
 Contributions and feedback are welcome! Feel free to fork the project, make improvements, and submit pull requests.
 
