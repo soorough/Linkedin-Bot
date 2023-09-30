@@ -45,7 +45,9 @@ class LinkedinBot:
         # This function goes to the 'Jobs' section and looks for all the jobs that match the keywords and location
 
         # go to Jobs
-        jobs_link = self.driver.find_element(By.XPATH, "//span[text()='Jobs']")
+        jobs_link = WebDriverWait(self.driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, "//span[text()='Jobs']"))
+        )
         jobs_link.click()
         time.sleep(2)
         # search based on keywords and location and hit enter
