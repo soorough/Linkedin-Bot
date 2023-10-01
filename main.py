@@ -38,8 +38,6 @@ class LinkedinBot:
         login_pass.clear()
         login_pass.send_keys(self.password)
         login_pass.send_keys(Keys.RETURN)
-        
-        time.sleep(15)
 
     def job_search(self):
         # This function goes to the 'Jobs' section and looks for all the jobs that match the keywords and location
