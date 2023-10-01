@@ -13,7 +13,7 @@ FEATURES:
 SOME IMPORTANT NOTES:
 
 1. It only applies to "Easy Apply" jobs not every single one.
-2. There might be bot checker so you have to manually do the "are you a human test"(you can change up the code at line no 42 and increase or decrease the time according to your needs).
+2. There might be a bot checker when loging in, so you have to manually do the "are you a human test" :)
 
 PREREQUISITES:
 
