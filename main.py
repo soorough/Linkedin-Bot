@@ -141,61 +141,77 @@ class LinkedinBot:
         print('You are applying to the position of: ', job_add.text)
         job_add.click()
         time.sleep(3)
-
+        
         # click on the easy apply button, skip if already applied to the position
+        appliedFlag = True
         try:
             apply_button = self.driver.find_element(By.CSS_SELECTOR, "button.jobs-apply-button.artdeco-button.artdeco-button--3.artdeco-button--primary.ember-view")
             apply_button.click()
         except NoSuchElementException:
             print('You already applied to this job, go to the next...')
+            appliedFlag = False
             pass
         time.sleep(1)
 
-                # try to submit if submit application is available...
-        try:
+             # try to submit if submit application is available...
+        if appliedFlag is True:
             try:
-                submit = self.driver.find_element(By.XPATH, "//button[@aria-label='Submit application']")
-                submit.send_keys(Keys.RETURN)
-                time.sleep(3)
-                dismiss = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
-                dismiss.click()
-                time.sleep(3)
+                try:
+                    submit = self.driver.find_element(By.XPATH, "//button[@aria-label='Submit application']")
+                    submit.send_keys(Keys.RETURN)
+                    time.sleep(3)
+                    dismiss = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
+                    dismiss.click()
+                    time.sleep(3)
+                except NoSuchElementException:
+                    count = 0
+                    while count<5:
+                        if "Continue to next step" in self.driver.page_source:
+                            next = self.driver.find_element(By.XPATH, "//button[@aria-label='Continue to next step']")
+                            next.send_keys(Keys.RETURN)
+                            time.sleep(2)
+                            count+=1
+                            continue
+                        
+                        
+                        elif "Review your application" in self.driver.page_source:
+                            review = self.driver.find_element(By.XPATH, "//button[@aria-label='Review your application']")
+                            review.send_keys(Keys.RETURN)
+                            time.sleep(2)
+                        
+                            if count>=4:  # Checkt for presence of element
+                                break
+                            else:
+                                submit = self.driver.find_element(By.XPATH, "//button[@aria-label='Submit application']")
+                                submit.send_keys(Keys.RETURN)
+                                time.sleep(3)
+                                dismiss = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
+                                dismiss.click()
+                                time.sleep(3)
+                                break
+                        # try:
+                        #     check1 = WebDriverWait(self.driver, 5).until(
+                        #     EC.presence_of_element_located((By.XPATH, '//div[contains(@aria-invalid, "true")]'))
+                        #     )
+                        #     print(check1)
+                        # except Exception as e:
+                        #     print("Element not found or other error:", e)
+                        # if check1 is not None:  # Check for presence of element
+                        #     break
+                    print('Not a direct application, going to the next...')
+                    try:
+                        discard = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
+                        discard.click()
+                        time.sleep(1)
+                        discard_confirm = self.driver.find_element(By.XPATH, "//button[@data-test-dialog-secondary-btn and @data-control-name='discard_application_confirm_btn']")
+                        discard_confirm.click()
+                        time.sleep(1)
+                    except NoSuchElementException:
+                        pass
+                    
+
+            # ... if not available, discard application and go to the next
             except NoSuchElementException:
-                count = 0
-                while count<5:
-                    print(count)
-                    if "Continue to next step" in self.driver.page_source:
-                        next = self.driver.find_element(By.XPATH, "//button[@aria-label='Continue to next step']")
-                        next.send_keys(Keys.RETURN)
-                        time.sleep(2)
-                        count+=1
-                        continue
-                    
-                    
-                    elif "Review your application" in self.driver.page_source:
-                        review = self.driver.find_element(By.XPATH, "//button[@aria-label='Review your application']")
-                        review.send_keys(Keys.RETURN)
-                        time.sleep(2)
-                    
-                        if count>=4:  # Checkt for presence of element
-                            break
-                        else:
-                            submit = self.driver.find_element(By.XPATH, "//button[@aria-label='Submit application']")
-                            submit.send_keys(Keys.RETURN)
-                            time.sleep(3)
-                            dismiss = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
-                            dismiss.click()
-                            time.sleep(3)
-                            break
-                    # try:
-                    #     check1 = WebDriverWait(self.driver, 5).until(
-                    #     EC.presence_of_element_located((By.XPATH, '//div[contains(@aria-invalid, "true")]'))
-                    #     )
-                    #     print(check1)
-                    # except Exception as e:
-                    #     print("Element not found or other error:", e)
-                    # if check1 is not None:  # Check for presence of element
-                    #     break
                 print('Not a direct application, going to the next...')
                 try:
                     discard = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
@@ -206,22 +222,8 @@ class LinkedinBot:
                     time.sleep(1)
                 except NoSuchElementException:
                     pass
-                
 
-        # ... if not available, discard application and go to the next
-        except NoSuchElementException:
-            print('Not a direct application, going to the next...')
-            try:
-                discard = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
-                discard.click()
-                time.sleep(1)
-                discard_confirm = self.driver.find_element(By.XPATH, "//button[@data-test-dialog-secondary-btn and @data-control-name='discard_application_confirm_btn']")
-                discard_confirm.click()
-                time.sleep(1)
-            except NoSuchElementException:
-                pass
-
-        time.sleep(1)
+            time.sleep(1)
 
     def close_session(self):
         #This function closes the actual session
