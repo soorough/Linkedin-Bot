@@ -4,6 +4,9 @@ LinkedIn Easy Apply Bot
 
 Automate your job applications on LinkedIn with this Python bot that applies to job listings. The bot logs into your LinkedIn profile, performs a job search based on specified keywords and location, filters the results, and then proceeds to apply to each of these job listings automatically.
 
+Video Demonstration of its working:
+https://www.linkedin.com/feed/update/urn:li:activity:7114141205151580160/
+
 FEATURES:
 
 1. Easy setup with a configuration file (config.json)
