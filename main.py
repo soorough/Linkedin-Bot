@@ -203,8 +203,8 @@ class LinkedinBot:
                         discard = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
                         discard.click()
                         time.sleep(1)
-                        discard_confirm = self.driver.find_element(By.XPATH, "//button[@data-test-dialog-secondary-btn and @data-control-name='discard_application_confirm_btn']")
-                        discard_confirm.click()
+                        save = self.driver.find_element(By.XPATH, "//button[@data-test-dialog-primary-btn and @data-control-name='save_application_btn']")
+                        save.click()
                         time.sleep(1)
                     except NoSuchElementException:
                         pass
@@ -217,8 +217,8 @@ class LinkedinBot:
                     discard = self.driver.find_element(By.XPATH, "//button[@data-test-modal-close-btn]")
                     discard.click()
                     time.sleep(1)
-                    discard_confirm = self.driver.find_element(By.XPATH, "//button[@data-test-dialog-secondary-btn and @data-control-name='discard_application_confirm_btn']")
-                    discard_confirm.click()
+                    save = self.driver.find_element(By.XPATH, "//button[@data-test-dialog-primary-btn and @data-control-name='save_application_btn']")
+                    save.click()
                     time.sleep(1)
                 except NoSuchElementException:
                     pass
