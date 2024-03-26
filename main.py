@@ -1,10 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 import json
 import os
@@ -18,11 +20,9 @@ class LinkedinBot:
         self.keywords = data['keywords']
         self.location = data['location']
 
-        # Set the system PATH to include the directory of chromedriver
-        chromedriver_path = data['driver_path']
-        os.environ['PATH'] += os.pathsep + chromedriver_path
-
-        self.driver = webdriver.Chrome()
+        # Get webdriver automatically
+        service = Service(executable_path=ChromeDriverManager().install())
+        self.driver = webdriver.Chrome(service=service)
 
     def login_linkedin(self):
         # This function logs into your personal LinkedIn profile
