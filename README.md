@@ -1,49 +1,71 @@
 # Linkedin-Bot
 
-LinkedIn Easy Apply Bot
+Automated job application bot for LinkedIn — apply to hundreds of Easy Apply jobs while you sleep.
 
-Automate your job applications on LinkedIn with this Python bot that applies to job listings. The bot logs into your LinkedIn profile, performs a job search based on specified keywords and location, filters the results, and then proceeds to apply to each of these job listings automatically.
+**Python · Selenium · 4 stars**
 
-Video Demonstration of its working:
-https://www.linkedin.com/feed/update/urn:li:activity:7114141205151580160/
+---
 
-## FEATURES
-1. Easy setup with a configuration file (config.json)
-2. Automatic login to your LinkedIn profile
-3. Customizable search with keywords and location
+## How it works
 
-IMPORTANT NOTES:
+1. Define job search criteria (title, location, experience level, remote preference) in `config.yaml`
+2. Bot logs into LinkedIn using a session cookie (no password stored after initial login)
+3. Searches Easy Apply jobs matching your criteria
+4. For each listing: opens the application, fills standard fields (contact info, resume upload, screening questions), and submits
+5. Logs every application to a CSV for tracking
 
-1. It only applies to "Easy Apply" jobs not every single one.
-2. There might be a bot checker when logging in, so you have to manually do the "are you a human test" :)
+---
 
-## Installation
-PREREQUISITES:
+## Features
 
-1. Your resume should be saved in your linkedin account.
-2. You should have applied to some of the jobs manually i.e. it would help bot to save your preferences about basic questions asked for the job and would not throw EXCEPTIONS.
-3. Make sure you have Python3 installed.
-5. Make sure you have Google Chrome installed.
+- Easy Apply automation — handles multi-step application flows
+- Smart form filling — detects field types (text, dropdown, radio, checkbox)
+- Duplicate detection — skips jobs already applied to
+- Rate limiting — humanized delays to avoid bot detection
+- CSV export — track every application with company, role, date, status
 
-HOW TO USE:
-1. Clone the repository: `git clone repo_url_or_ssh`
-2. Open terminal and head to the cloned repository: `cd repo_folder_path`
-3. Install the required dependencies: `pip3 install -r requirements.txt`
-4. Fill in your LinkedIn login credentials and job search preferences in the config.json file.
-5. Run the main.py script in your terminal to start the bot.
-6. Sit back and relax while the bot applies to relevant job listings on your behalf.
+---
 
-Please note:
-1. Use this bot responsibly and follow LinkedIn's terms of service.
-2. The bot is designed for educational and personal use only and should not be used for commercial purposes or spamming.
-3. LinkedIn may change its website structure or policies, which could affect the bot's functionality. Use at your own risk.
+## Stack
 
-ISSUES:
-If you face any issues regarding compatibility issues of choromedriver refer to this thread:
-https://github.com/ultrafunkamsterdam/undetected-chromedriver/issues/1558
+```
+Python 3.10+
+Selenium WebDriver (Chrome)
+undetected-chromedriver
+LinkedIn session-cookie auth
+PyYAML for config
+```
 
-Contributions and feedback are welcome! Feel free to fork the project, make improvements, and submit pull requests.
+---
 
-Happy job hunting with LinkedIn Easy Apply Bot!
+## Setup
 
-Made with Lazyness by SOOROUGH
+```bash
+git clone https://github.com/soorough/Linkedin-Bot
+cd Linkedin-Bot
+pip install -r requirements.txt
+
+cp config.example.yaml config.yaml
+# Edit config.yaml with your search criteria
+
+python main.py
+```
+
+---
+
+## Config
+
+```yaml
+job_search:
+  keywords: ["Backend Engineer", "Full Stack Engineer", "AI Engineer"]
+  location: "India"
+  remote: true
+  experience_level: ["Mid-Senior level"]
+  max_applications: 50
+
+resume: /path/to/resume.pdf
+```
+
+---
+
+> For educational purposes. Use in accordance with LinkedIn ToS.
